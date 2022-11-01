@@ -30,20 +30,24 @@ class _HistoryScreenState extends State<HistoryScreen>
       Map<dynamic, dynamic> snapshotsValues =
           event.snapshot.value as Map<dynamic, dynamic>;
 
-      // print(snapshotsValues);
+      int totalData = 0;
+
+      snapshotsValues.forEach((key, value) {
+        totalData += 1;
+      });
 
       Map<String, double> glucoseValues = {};
 
-      snapshotsValues.forEach(
-        (key, value) {
-          glucoseValues[key.toString()] = value;
-        },
-      );
+      for (var i = totalData - 1; i >= 0; i--) {
+        glucoseValues[event.snapshot.children.elementAt(i).key.toString()] =
+            event.snapshot.children.elementAt(i).value as double;
+      }
 
       // print(glucoseValues);
       setState(() {
         _glucoseValue = glucoseValues;
       });
+      
     });
   }
 
@@ -303,141 +307,145 @@ class _HistoryScreenState extends State<HistoryScreen>
                               .toList(),
                         ),
                         ListView(
-                          controller: _scrollControllerGlucose,
-                          children: _cholesterolValue.entries
-                              .map((element) => Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20.0))),
-                                    elevation: 4,
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 10.0, horizontal: 20.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          _setCholesterolCategory(element.value),
-                                          Flexible(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  element.value
-                                                      .toStringAsFixed(1),
-                                                  style: TextStyle(
-                                                      fontSize: 24.0,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text(
-                                                  "mg/dl",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                              ],
+                            controller: _scrollControllerGlucose,
+                            children: _cholesterolValue.entries
+                                .map((element) => Card(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20.0))),
+                                      elevation: 4,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 20.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            _setCholesterolCategory(
+                                                element.value),
+                                            Flexible(
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    element.value
+                                                        .toStringAsFixed(1),
+                                                    style: TextStyle(
+                                                        fontSize: 24.0,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    "mg/dl",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Flexible(
-                                            child: FittedBox(
-                                              fit: BoxFit.fitWidth,
-                                              child: Text(
-                                                  element.key.toString(),
-                                                  style: TextStyle(
-                                                      fontStyle:
-                                                          FontStyle.italic,
-                                                      fontSize: 12.0)),
-                                            ),
-                                          )
-                                        ],
+                                            Flexible(
+                                              child: FittedBox(
+                                                fit: BoxFit.fitWidth,
+                                                child: Text(
+                                                    element.key.toString(),
+                                                    style: TextStyle(
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                        fontSize: 12.0)),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ))
-                              .toList()
-                        ),
-                        ListView(
-                          controller: _scrollControllerGlucose,
-                          children: _uricAcidValue.entries
-                              .map((element) => Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20.0))),
-                                    elevation: 4,
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 10.0, horizontal: 20.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Flexible(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  element.value
-                                                      .toStringAsFixed(1),
-                                                  style: TextStyle(
-                                                      fontSize: 24.0,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text(
-                                                  "mg/dl",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                              ],
+                                    ))
+                                .toList()),
+                        Column(
+                          children: [
+                            Text("Keterangan",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0)),
+                            SizedBox(height: 5.0),
+                            Chip(
+                              backgroundColor: Colors.transparent,
+                              shape: StadiumBorder(
+                                  side: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 30, 136, 229))),
+                              labelStyle: TextStyle(
+                                  color: Colors.blue[600], fontSize: 12.0),
+                              label: Text("Laki-Laki: 3.4-7 mg/dl"),
+                            ),
+                            Chip(
+                              backgroundColor: Colors.transparent,
+                              shape: StadiumBorder(
+                                  side: BorderSide(
+                                      color: Color.fromARGB(255, 233, 30, 99))),
+                              labelStyle:
+                                  TextStyle(color: Colors.pink, fontSize: 12.0),
+                              label: Text("Perempuan: 2.4-6 mg/dl"),
+                            ),
+                            Expanded(
+                              child: ListView(
+                                  controller: _scrollControllerGlucose,
+                                  children: _uricAcidValue.entries
+                                      .map((element) => Card(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20.0))),
+                                            elevation: 4,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 10.0,
+                                                  horizontal: 20.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  Flexible(
+                                                    child: Column(
+                                                      children: [
+                                                        Text(
+                                                          element.value
+                                                              .toStringAsFixed(
+                                                                  1),
+                                                          style: TextStyle(
+                                                              fontSize: 24.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          "mg/dl",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Flexible(
+                                                    child: FittedBox(
+                                                      fit: BoxFit.fitWidth,
+                                                      child: Text(
+                                                          element.key
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                              fontSize: 12.0)),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Flexible(
-                                            child: Column(
-                                              children: [
-                                                      Chip(
-                                                        backgroundColor: Colors.transparent,
-                                                        shape: StadiumBorder(
-                                                          side: BorderSide(
-                                                            color: Color.fromARGB(255, 30, 136, 229)
-                                                          )
-                                                        ),
-                                                        labelStyle: TextStyle(
-                                                          color: Colors.blue[600],
-                                                          fontSize: 5.0
-                                                        ),
-                                                        label: Text("Laki-Laki: 3.4-7 mg/dl"),
-                                                      ),
-                                                      Chip(
-                                                        backgroundColor: Colors.transparent,
-                                                        shape: StadiumBorder(
-                                                          side: BorderSide(
-                                                            color: Color.fromARGB(255, 233, 30, 99)
-                                                          )
-                                                        ),
-                                                        labelStyle: TextStyle(
-                                                          color: Colors.pink,
-                                                          fontSize: 5.0
-                                                        ),
-                                                        label: Text("Perempuan: 2.4-6 mg/dl"),
-                                                      ),
-                                              ],
-                                            )                                               
-                                          ),
-                                          Flexible(
-                                            child: FittedBox(
-                                              fit: BoxFit.fitWidth,
-                                              child: Text(
-                                                  element.key.toString(),
-                                                  style: TextStyle(
-                                                      fontStyle:
-                                                          FontStyle.italic,
-                                                      fontSize: 12.0)),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ))
-                              .toList()
+                                          ))
+                                      .toList()),
+                            ),
+                          ],
                         ),
                       ],
                     ),

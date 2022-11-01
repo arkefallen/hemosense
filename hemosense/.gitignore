@@ -45,3 +45,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+git rm --cached public/app/google-services.json
