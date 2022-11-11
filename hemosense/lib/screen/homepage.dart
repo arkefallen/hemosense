@@ -101,12 +101,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const CircleAvatar(
-                      radius: 15.0,
-                    ),
+                    Icon(Icons.account_circle_rounded, color: Colors.blue[900],),
                     const SizedBox(width: 8.0),
                     Text(
-                      "Hi, Kamu !",
+                      "Hi, Selamat Datang!",
                       style: TextStyle(
                           color: Colors.blue[900], fontWeight: FontWeight.bold),
                     ),
@@ -126,6 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           child: ListView(
             children: [
+              const SizedBox(height: 30.0),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Row(
@@ -133,15 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          "HemoSense",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w800,
-                              fontSize: 24.0),
-                        ),
+                      child: Image.asset(
+                        'assets/Logoo.png',
+                        fit: BoxFit.cover,
                       ),
                     ),
                     Flexible(
@@ -223,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     )
                                   ],
                                 ),
-                                const Flexible(child: SizedBox(width: 50.0)),
+                                const Flexible(child: SizedBox(width: 30.0)),
                                 Column(
                                   children: [
                                     FittedBox(
@@ -257,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 const Flexible(
                                     child: SizedBox(
-                                  width: 50.0,
+                                  width: 30.0,
                                 )),
                                 Column(
                                   children: [

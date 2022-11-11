@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.project.hemosense">
    <application
-        android:label="hemosense"
+        android:label="Hemosense"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/app_icon_hemosense">
         <activity
             android:name=".MainActivity"
             android:exported="true"

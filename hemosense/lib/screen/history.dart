@@ -12,11 +12,11 @@ class HistoryScreen extends StatefulWidget {
 
 class _HistoryScreenState extends State<HistoryScreen>
     with TickerProviderStateMixin {
-  Map<String, double> _glucoseValue = {};
+  Map<String, num> _glucoseValue = {};
 
-  Map<String, double> _cholesterolValue = {};
+  Map<String, num> _cholesterolValue = {};
 
-  Map<String, double> _uricAcidValue = {};
+  Map<String, num> _uricAcidValue = {};
 
   final _database = FirebaseDatabase.instance.ref();
 
@@ -36,18 +36,17 @@ class _HistoryScreenState extends State<HistoryScreen>
         totalData += 1;
       });
 
-      Map<String, double> glucoseValues = {};
+      Map<String, num> glucoseValues = {};
 
-      for (var i = totalData - 1; i >= 0; i--) {
+      for (int i = totalData - 1; i >= 0; i--) {
         glucoseValues[event.snapshot.children.elementAt(i).key.toString()] =
-            event.snapshot.children.elementAt(i).value as double;
+            event.snapshot.children.elementAt(i).value as num;
       }
 
       // print(glucoseValues);
       setState(() {
         _glucoseValue = glucoseValues;
       });
-      
     });
   }
 
@@ -59,13 +58,19 @@ class _HistoryScreenState extends State<HistoryScreen>
       Map<dynamic, dynamic> snapshotsValues =
           event.snapshot.value as Map<dynamic, dynamic>;
 
-      Map<String, double> cholesterolValues = {};
+      int totalData = 0;
 
-      snapshotsValues.forEach(
-        (key, value) {
-          cholesterolValues[key.toString()] = value;
-        },
-      );
+      snapshotsValues.forEach((key, value) {
+        totalData += 1;
+      });
+
+      Map<String, num> cholesterolValues = {};
+
+      for (int i = totalData - 1; i >= 0; i--) {
+        cholesterolValues[event.snapshot.children.elementAt(i).key.toString()] =
+            event.snapshot.children.elementAt(i).value as num;
+      }
+
       setState(() {
         _cholesterolValue = cholesterolValues;
       });
@@ -78,13 +83,18 @@ class _HistoryScreenState extends State<HistoryScreen>
       Map<dynamic, dynamic> snapshotsValues =
           event.snapshot.value as Map<dynamic, dynamic>;
 
-      Map<String, double> uricAcidValues = {};
+      int totalData = 0;
 
-      snapshotsValues.forEach(
-        (key, value) {
-          uricAcidValues[key.toString()] = value;
-        },
-      );
+      snapshotsValues.forEach((key, value) {
+        totalData += 1;
+      });
+
+      Map<String, num> uricAcidValues = {};
+
+      for (int i = totalData - 1; i >= 0; i--) {
+        uricAcidValues[event.snapshot.children.elementAt(i).key.toString()] =
+            event.snapshot.children.elementAt(i).value as num;
+      }
       setState(() {
         _uricAcidValue = uricAcidValues;
       });
@@ -100,7 +110,7 @@ class _HistoryScreenState extends State<HistoryScreen>
     super.initState();
   }
 
-  Widget _setGlucoseCategory(double value) {
+  Widget _setGlucoseCategory(num value) {
     if (value >= 0 && value < 100) {
       return Chip(
           labelStyle: TextStyle(color: Colors.white, fontSize: 12.0),
@@ -124,7 +134,7 @@ class _HistoryScreenState extends State<HistoryScreen>
     }
   }
 
-  Widget _setCholesterolCategory(double value) {
+  Widget _setCholesterolCategory(num value) {
     if (value >= 0 && value < 200) {
       return Chip(
           labelStyle: TextStyle(color: Colors.white, fontSize: 12.0),
@@ -374,7 +384,7 @@ class _HistoryScreenState extends State<HistoryScreen>
                                           Color.fromARGB(255, 30, 136, 229))),
                               labelStyle: TextStyle(
                                   color: Colors.blue[600], fontSize: 12.0),
-                              label: Text("Laki-Laki: 3.4-7 mg/dl"),
+                              label: Text("Laki-Laki: 3.4-7 mg/dl (Normal)"),
                             ),
                             Chip(
                               backgroundColor: Colors.transparent,
@@ -383,7 +393,7 @@ class _HistoryScreenState extends State<HistoryScreen>
                                       color: Color.fromARGB(255, 233, 30, 99))),
                               labelStyle:
                                   TextStyle(color: Colors.pink, fontSize: 12.0),
-                              label: Text("Perempuan: 2.4-6 mg/dl"),
+                              label: Text("Perempuan: 2.4-6 mg/dl (Normal)"),
                             ),
                             Expanded(
                               child: ListView(

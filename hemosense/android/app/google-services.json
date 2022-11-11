@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "177768619574",
+    "firebase_url": "https://hemosense-3dca9-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hemosense-3dca9",
+    "storage_bucket": "hemosense-3dca9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177768619574:android:4324f614ec0364950f0297",
+        "android_client_info": {
+          "package_name": "app.project.hemosense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "177768619574-836rdcq637qto9r4rs6t4ic4dcvmk5fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1Gojg18DNYBJ3KE2PeBTWGTRoJrji5tA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "177768619574-836rdcq637qto9r4rs6t4ic4dcvmk5fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

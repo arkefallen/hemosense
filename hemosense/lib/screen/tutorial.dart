@@ -63,7 +63,7 @@ class TutorialScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Cara Penggunaan Hemoscan",
+                          "Cara Penggunaan HemoSense",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0
@@ -100,7 +100,7 @@ class TutorialScreen extends StatelessWidget {
                                 SizedBox(width: 10.0),
                                 CircleAvatar(backgroundColor: Colors.blue[900],radius: 25.0,child: Image.asset('assets/power-on.png')),
                                 SizedBox(width: 10.0),
-                                Flexible(child: Text("Hidupkan alat Hemosense",style: TextStyle(color: Colors.white),))
+                                Flexible(child: Text("Hidupkan alat HemoSense",style: TextStyle(color: Colors.white),))
                               ],
                             ),
                           ),
@@ -136,7 +136,7 @@ class TutorialScreen extends StatelessWidget {
                                 SizedBox(width: 10.0),
                                 CircleAvatar(backgroundColor: Colors.blue[900],radius: 25.0,child: Image.asset('assets/finger.png')),
                                 SizedBox(width: 10.0),
-                                Flexible(child: Text("Masukan jarimu pada alat Hemosense",style: TextStyle(color: Colors.white),))
+                                Flexible(child: Text("Masukan jarimu pada alat HemoSense",style: TextStyle(color: Colors.white),))
                               ],
                             ),
                           ),
